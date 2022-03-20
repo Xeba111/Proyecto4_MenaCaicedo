@@ -11,6 +11,9 @@ public class MainActivity extends AppCompatActivity
     EditText inputTextX;
     EditText inputTextY;
     TextView mostrarXY;
+    int[] coordenadasX;
+    int[] coordenadasY;
+    int numeroElementos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,6 +24,9 @@ public class MainActivity extends AppCompatActivity
         inputTextX = (EditText) findViewById(R.id.InputTextX);
         inputTextY = (EditText) findViewById(R.id.InputTextY);
         mostrarXY = (TextView) findViewById(R.id.imprimirCoordenadas);
+        coordenadasX = new int[20];
+        coordenadasY = new int[20];
+        numeroElementos = 0;
     }
 
     public void guardarDatos(View view)
@@ -34,8 +40,23 @@ public class MainActivity extends AppCompatActivity
         {
             x = Integer.parseInt(valorX);
             y = Integer.parseInt(valorY);
+
+            coordenadasX[numeroElementos] = x;
+            coordenadasY[numeroElementos] = y;
+
+            numeroElementos++;
         }
 
+        inputTextX.setText("");
+        inputTextY.setText("");
         mostrarXY.setText("X: " + x + " ,Y: " + y);
+    }
+
+    public void eliminarDatos(View view)
+    {
+        coordenadasX = new int[20];
+        coordenadasY = new int[20];
+
+        mostrarXY.setText(" ");
     }
 }
